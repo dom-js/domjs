@@ -1,0 +1,80 @@
+<!DOCTYPE HTML >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" data-main="test.js" src="/domjs/rjq202.js"></script>
+    <title>树组件演示界面</title>
+</head>
+<body style="height: 100%;">
+    <div>树组件需要 requirejs/jQuery的支持</div>
+    <div id="treepane">
+        <button id="add">添加节点</button>
+    </div>
+    <div
+            data-type="widget/contextmenu"
+            data-version="2.0.0"
+            id="menu1"
+            style="width: 300px"
+            >
+    <ul>
+            <li  ><div class="label">添加</div></li>
+            <li>删除</li>
+            <li>修改</li>
+            <li>刷新</li>
+        </ul>
+    </div>
+    <div data-id="treestore"
+         data-type="store/viewstore"
+         data-host="apptest.xxx.com.cn"
+
+         data-db="/xxx/Knowledge/KnowledgeOrg.nsf"
+         data-view ="vwDepartTree"
+         data-idProperty="departmentunid"
+         data-childrenProperty="_children"
+         data-version="1.0.0" >
+        View Store//
+        data-db="/xxx/hr/basic/hrbasic.nsf
+        data-view ="Department"
+    </div>
+    <div data-id="deptstore"
+         data-type="store/viewstore"
+         data-host="apptest.xxx.com.cn"
+
+         data-db="/xxx/hr/basic/hrbasic.nsf"
+         data-view ="Department"
+         data-idProperty="dept_code"
+         data-version="1.0.0" >
+
+    </div>
+    <div style="clear: both;width: inherit;">
+
+
+        data-onnodecomplete=this.expand
+    <div id="treepanel"
+         data-type="widget/tree"
+         data-version="2.0.0"
+         data-store="treestore"
+         data-label="departmentname"
+         class="treeview"
+         style="margin-left:0px;font-size:12px;height:400px;width: 180px;
+            border:1px solid #2F6FAB;float: left;">
+    　</div>
+    <div id="treepanel2"
+         data-expandone=true
+         data-multi="true"
+         data-type="widget/tree"
+         data-version="2.0.0"
+         data-store="deptstore"
+         data-root="000001"
+         data-label="dept_name"
+         data-rootlabel=""
+         data-oncontextmenu=function(){alert(1)}
+         class="treeview"
+         data-preload=true
+         style="margin-left:0px;font-size:12px;height:400px;width: 180px;
+            border:1px solid #2F6FAB;float: left;">
+        　</div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+#toolbar {
+	position: fixed;
+	top: 0px;
+	z-index: 99;
+	margin: 0px;
+	width: 100%;
+	/**
+	height:32px;
+	line-height:32px;
+	**/
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF),to(#E7E7E7) );
+	background: -moz-linear-gradient(top, #FFFFFF, #E7E7E7);
+    background: -ms-linear-gradient(top, #FFFFFF, #E7E7E7);
+
+	filter: progid:DXImageTransform.Microsoft.gradient (   startcolorstr =		  #FFFFFF, endcolorstr = #E7E7E7, gradientType = 0 ); 
+	border-color: 0px soild #D4D4D4;
+	border-bottom: 2px inset #A0A0A0;
+	background-color: #E7E7E7;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 8px;
+	overflow: hidden;
+	float: left;
+	left: 0px;
+	/*IE6 hack*/
+	_padding-left: 0px;
+	_position: absolute;
+	_top: expression(eval(document.documentElement.scrollTop) );
+}
+
+/*IE6 Hack*/
+* html{
+	background-image: url(about:blank);
+	background-attachment: fixed;
+}
+
+.ToolButton {
+	float: left;
+	margin: 0px 2px;
+	/**
+	height:18px;
+	line-height:18px;
+	overflow:hidden;
+	
+	padding-left:4px;
+	padding-right:4px;
+	padding-top:2px;
+	*/
+	background-color: #f6f6f6;
+	border: #d5d4d4 1px solid;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF),to(#EEEEEE) );
+	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE);
+    background: -ms-linear-gradient(top, #FFFFFF, #EEEEEE);
+	filter:progid:DXImageTransform.Microsoft.gradient ( startcolorstr =		#FFFFFF, endcolorstr = #EEEEEE, gradientType = 0 ); BORDER-LEFT: #d5d4d4 1px solid;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+/*
+*.ToolButton{
+	padding:3px;
+	padding-right:4px;
+}*/
+.ToolButton:hover {
+	background: -webkit-gradient(linear, left top, left bottom, from(#EEEEEE),
+		to(#FFFFFF) );
+    background: -moz-linear-gradient(top, #EEEEEE, #FFFFFF);
+    background: -ms-linear-gradient(top, #EEEEEE, #FFFFFF);
+	filter: progid : DXImageTransform.Microsoft.gradient (   startcolorstr =#EEEEEE, endcolorstr =     #FFFFFF, gradientType =   0 );
+}
+
+.ToolCheckBoxButton {
+	height: 22px;
+	padding: 4px;
+}
+
+.ToolButtonText {
+	margin: 3px;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	/*IE hack*/
+	heigh: 18px\9;
+	line-height: 18px\9;
+	/*IE8 hack*/
+	height: 16px\0;
+	line-height: 16px\0;
+}
+
+.toolbar .icon {
+	background-image: url("../images/form_icon.png");
+	background-repeat: no-repeat;
+	padding-left: 22px;
+	background-position-x: 1px;
+	/*IE6 Hack*/
+	_background-image: url("../images/form_icon.gif");
+	_padding-left: 20px;
+	_background-position-x: -1px;
+}
+.toolbar .iconexp {
+	background-position-y: 0px;
+}
+.toolbar .iconcol {
+	background-position-y: -16px;
+}
+
+.toolbar .iconsave {
+	background-position-y: -32px;
+}
+
+.toolbar .iconsubmit {
+	background-position-y: -48px;
+}
+
+.toolbar .iconedit {
+	background-position-y: -48px;
+}
+
+.toolbar .icontransfer {
+	background-position-y: -64px;
+}
+
+.toolbar .iconreturnpre {
+	background-position-y: -80px;
+}
+
+.toolbar .iconreturnfrist {
+	background-position-y: -96px;
+}
+
+.toolbar .iconremind {
+	background-position-y: -112px;
+}
+
+.toolbar .iconinvalide {
+	background-position-y: -128px;
+}
+
+.toolbar .iconreduction {
+	background-position-y: -144px;
+}
+
+.toolbar .icondelete {
+	background-position-y: -160px;
+}
+
+.toolbar .iconexit {
+	background-position-y: -176px;
+}

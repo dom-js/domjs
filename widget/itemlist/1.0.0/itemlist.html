@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script   type="text/javascript" src="/domjs/r.js"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl:"/domjs",
+            paths:{
+                "store/dxlstore":"store/dxlstore/1.0.0/dxlstore"
+            }
+        })
+       require(["store/DXLStore","widget/itemlist/1.0.0/itemlist"],function(Store,listNode){
+                var store = new Store( {
+                    dbpath : "/xxx/ykh/templatedemob.nsf",
+                    view : "SysNavi",
+                    catename : "child"
+                })
+                var list = new listNode({
+                    store:store,
+                    layout:[{text:"label",onclick:function(label){
+                        console.log(this.item)
+                    }}]
+                });
+                $("#panel").append(list)
+            })
+
+   </script>
+    <title></title>
+
+ </head>
+<body>
+<div id="panel" style="width: 200px; height: 200px; border:1px solid #666666;margin: 300px auto auto;overflow-x: hidden;overflow-y:scroll;"></div>
+</body>
+</html>

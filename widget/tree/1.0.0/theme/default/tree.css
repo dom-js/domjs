@@ -1,0 +1,89 @@
+.treeview {
+    width:auto;
+}
+
+.treeview ul {
+    width:inherit;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.treeview li {
+    width:100%;
+	margin: 0;
+    overflow-x:visible;
+	padding: 3px 0px 3px 16px;
+    background: url("images/line.gif") 0 0 no-repeat;
+
+}
+
+.treeview li span {
+    padding: 0px 0 2px 18px;
+    display: block;
+    cursor: pointer;
+    overflow-x:hidden;
+    white-space:nowrap;
+}
+.treeview .hover {
+	color: #ff0000;
+	cursor: pointer;
+}
+
+
+
+.treeview li.last {
+	background-position: 0 -1766px
+}
+.treeview li.root {
+	background:none;
+}
+.treeview  .hitarea {
+	background: url(images/hitarea.gif) 0 0 no-repeat;
+	height: 16px;
+	width: 16px;
+	margin-left: -16px!important;
+	margin-left: -8px; 
+	float: left;
+	cursor: pointer;
+}
+
+.treeview .hitarea_collapseed{
+	background-position: -80px -3px; 
+}
+ 
+
+.treeview .hitarea_expanded{
+	background-position: 0 -114px
+}
+ 
+.treeview .hitarea_collapseed_root{
+	background-position:-48px -48px;
+}
+
+.treeview .hitarea_expanded_root{
+	background-position:-16px -92px;
+} 
+
+.treeview .hitarea_collapseed_last{
+	background-position: -32px -70px
+} 
+.treeview .hitarea_expanded_last{
+	background-position: 0 -114px
+} 
+
+
+.treeview .selectedlabel {
+	color: #ff0000;
+}
+.treeview   .folderopen {
+	background: url(images/folder.gif) 0 0 no-repeat;
+}
+
+.treeview  .folderclosed {
+	background: url(images/folder-closed.gif) 0 0 no-repeat;
+}
+
+.treeview .file {
+	background: url(images/file.gif) 0 0 no-repeat;
+}

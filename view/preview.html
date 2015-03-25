@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script>
+        ////localhost:3000/
+        var require = {
+            baseUrl:"/domjs" ,
+            paths:{
+                "base/objectj":"base/objectj.uncompress"
+            }
+        }
+    </script>
+    <script type="text/javascript" data-main='/domjs/main' src="/domjs/rjq202.js"></script>
+    <script type="text/javascript">
+
+    </script>
+    <title></title>
+    <style>
+        .table {
+           width: 2000px;
+        }
+        .table table{
+            width: 100%  ;
+            background-color: #cccccc;
+            font-size: 12px;
+        }
+        .table td {
+            background-color: #FFF;
+            line-height: 20px;
+            height: 20px;
+        }
+        .table th{
+            background-color:#AA3333;
+            line-height: 22px;
+            height: 22px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #FFF;
+        }
+        .infotitle th, td.infotitle{
+            background-color: #fcf7ca;
+            color: #044062;
+        }
+    </style>
+</head>
+<body>
+data-host="oa.xxx.com.cn"
+data-db="/xxx/SCM/wfscmengchange.nsf"
+data-db="/hikvixxxsion/ykh/templatedemov0.19.nsf"
+data-view="EndByStartDateTime"
+data-view="EndBySerial"
+<div class="table" data-type="view/viewtest"
+     data-db="/xxx/bxg/BomApply_New.nsf"
+     data-view="EndBySerial"
+     data-queryEngine="open"
+     data-previewLayout="#previewLayout"
+     data-count="30"
+        ></div>
+<script type="text/x-domjs-tmpl" id="previewLayout">
+    <table cellpadding=1 cellspacing=1>
+        <tr><td class="infotitle" >业务部门</td><td colspan="3">${s1_department}</td></tr>
+        <tr><td class="infotitle" >产品系列</td><td colspan="3">${s1_cpxl}</td></tr>
+        <tr class="infotitle" ><th>名称</th><th>型号</th><th>路径</th></tr>
+        {{each child}}
+         <tr>
+              <td>${$value["s1_bom_name"]}</td>
+             <td>${$value.s1_xh}</td>
+             <td>${$value.s1_bom_path}</td>
+         </tr>
+        {{/each}}
+    </table>
+</script>
+</body>
+
+
+</html>

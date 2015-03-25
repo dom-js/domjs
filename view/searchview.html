@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script>
+        ////localhost:3000/
+        var require = {
+            baseUrl:"/domjs"
+        }
+
+    </script>
+    <script type="text/javascript" data-main='/domjs/main' src="/domjs/rjq202.js"></script>
+    <script type="text/javascript">
+
+    </script>
+    <title></title>
+    <style>
+        .table table{
+            width: 100%  ;
+            background-color: #cccccc;
+            font-size: 12px;
+        }
+        .table td {
+            background-color: #FFF;
+            line-height: 20px;
+            height: 20px;
+        }
+        .table th{
+            background-color:#AA3333;
+            line-height: 22px;
+            height: 22px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #FFF;
+        }
+        .infotitle th, td.infotitle{
+            background-color: #fcf7ca;
+            color: #044062;
+        }
+    </style>
+</head>
+<body>
+<div class="table" data-type="view/view"
+     data-db="/xxx/bxg/BomApply_New.nsf"
+     data-view="EndBySerial"
+     data-queryengine="open"
+     data-scrollBar="window"
+     data-querystr="模拟球机"
+
+     data-count="60"
+     style="list-style: none"
+        >
+        <script type="text/x-domjs-params" >
+            return {
+
+                     basefilter:[{label:"All"},
+                                {label:"申请编号",field:"DocNo",icon:"text","default":true},
+                                {label:"所属部门",field:"s1_department",icon:"group"},
+                                {label:"申请人",field:"s1_sqr",icon:"user"},
+                                {label:"申请日期",type:"DATE",field:"s1_sqrq","icon":"calendar"}]
+            }
+            //{label:"All",default:true,field:"*"},{label:"产品部门",field:"s1_department"},{label:"Created",type:"DATE",default:true,field:"WF_Created"}
+        </script>
+        </div>
+
+</body>
+
+
+</html>

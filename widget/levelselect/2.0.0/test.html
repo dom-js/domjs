@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        require={baseUrl:"/domjs"}
+    </script>
+
+    <script type="text/javascript"  src="/domjs/rjq202.js"></script>
+    <script type="text/javascript">
+        require(["m!widget/levelselect:2.0.0","store/viewstore"], function (levelselect,Store)
+        {
+            var store = new Store({
+                host:"apptest.xxx.com.cn",
+               // db:"/xxx/Knowledge/CategoryManager.nsf",
+                db:"/xxx/hr/basic/hrbasic.nsf",
+               // view:"CategoryManager"
+                view:"Department",
+                idProperty:"dept_code"
+            })
+            var store2 = new Store({
+                host:"apptest.xxx.com.cn",
+                  db:"/xxx/Knowledge/CategoryManager.nsf",
+               // db:"/xxx/hr/basic/hrbasic.nsf",
+                 view:"CategoryManager",
+               // view:"Department",
+                idProperty:"_children"
+            })
+            var sel = levelselect("[name=department]",{
+                store:store,
+                root:"000001",
+               // root:"000113",
+                height:300,
+                width:600,
+                label:"dept_name",
+                multi:true,
+                showcols:2,
+                leveldepth:0,
+                valuefield:"dept_name",
+                selectcate:true,
+                infolayout:[[{label:"部门编号",field:"dept_code"},{label:"部门名称",field:"dept_name"}],
+                    [{label:"部门路径",field:"_item_path",format:function(vals){
+                    return vals.join("/")
+                   }}]
+                ]
+            })
+            var sel2= levelselect("[name=rddepart]",{
+                store:store,
+                root:"000004",
+                rootlabel:"研发中心",
+                label:"dept_name",
+                showcols:2,
+                leveldepth:0,
+                infolayout:[[{label:"部门名称",field:"dept_name"},{label:"部门编号",field:"dept_code"}], [{label:"部门路径",field:"_item_path",format:function(vals){
+                    return vals.join("/")
+                }}]]
+            })
+            sel2.onselect=function(items){
+                if(items.length==0)
+                    this.val("")
+                else
+                    this.val(items[0]._item_path.join("/"))
+                return true
+            }
+            var sel3= levelselect("[name=scmdept]",{
+                store:store,
+                root:"000238",
+                rootlabel:"供应链管理部",
+                label:"dept_name",
+                showpath:false,
+                showcols:1,
+                leveldepth:1,
+                infolayout:[[{label:"部门名称",field:"dept_name"},{label:"部门编号",field:"dept_code"}]],
+                onselect:function(items){
+                    if(items.length==0) {
+                        this.val("")
+                        $("input[name=scmdeptname]").val("")
+                        return true
+                    }
+                    // console.log(this.focusItemQueue)
+                    this.val(items[0].dept_name)
+                    $("input[name=scmdeptname]").val(items[0].dept_manager)
+                return true
+            }
+            })
+            var sel5= levelselect("[name=dept5name]",{
+                store:store,
+                roots:[{dept_code:"000004",dept_name:"研发中心"},{dept_code:"000238",dept_name:"供应链"}],
+                rootlabel:"海康威视",
+                label:"dept_name",
+                showpath:true,
+                showcols:2,
+                leveldepth:0,
+                infolayout:[[{label:"部门名称",field:"dept_name"},{label:"部门编号",field:"dept_code"}]],
+                onselect:function(items){
+                    if(items.length==0) {
+                        this.val("")
+                        $("input[name=dept5manager]").val("")
+                        return true
+                    }
+                    // console.log(this.focusItemQueue)
+                    this.val(items[0].dept_name)
+                    $("input[name=dept5manager]").val(items[0].dept_manager)
+                    return true
+                }
+            })
+            var sel4= levelselect("[name=kmcate]",{
+                store:store2,
+                root:"root",
+                rootlabel:"供应链中心",
+                label:"categoryname",
+                showcols:2,
+                leveldepth:0,
+                pathfield:"categoryfullname",
+                onselect:function(items){
+                    if(items.length==0) {
+                        this.val("")
+                        return true
+                    }
+                    // console.log(this.focusItemQueue)
+                    this.val(items[0].categoryfullname)
+                    return true
+                }
+            })
+
+           var   store3 = new Store({
+                host:"rddevelop.xxx.com.cn",
+                db:"/xxx/rdweb/RDProduct.nsf",
+                view:"(hvwProductByParent)",
+                idProperty:"deptpath",
+                count:"99"
+        })
+            var store4 = new Store({
+                host:"rduat.xxx.com.cn",
+                db:"/xxx/rdweb/RDOrg.nsf",
+                view:"(dlOrgDeptByParentDeptCode)",
+                idProperty:"deptpath",
+                count:"100"
+            })
+            sel6 = levelselect("[name=s1_cpxh_1]",{
+                store:store3,
+                root:"root",
+                //valueitems:valuelist,
+                rootlabel:"产品库",
+                height:300,
+                width:600,
+                label:"proname",
+                multi:false,
+                showcols:3,
+                leveldepth:3,
+                selectend:false,
+                selectcate:false,
+                valuefield:"_item_path",
+                valuesplit:";",
+                pathsplit:"\\"
+            })
+            sel6.on("click",function(){
+                sel6.showDialog()
+		   })
+            var sel7 = levelselect("[name=deptpath]",{
+                store:store4,
+                root:"root",
+                //valueitems:valuelist,
+                rootlabel:"",
+                height:300,
+                width:600,
+                label:"deptcodedescriptioncn",
+                multi:false,
+                filter:function(item){
+
+                    //alert(this.focusLevel);
+                    var ssbm=item["dl"];
+                    //alert(ssbm);
+
+                    var cuser="胡雅璇";
+                    if(ssbm==cuser){return true;}else{return false;}
+
+                },
+
+                showcols:3,
+                selectcate:false,
+                valuefield:"_item_path",
+                valuesplit:",",
+                pathsplit:"\\"
+            })
+
+            sel7.on("click",function(){
+                sel7.showDialog()
+            })
+            $("input[type=button]").on("click",function(){
+                  switch(this.name){
+                      case "select2":
+                          sel2.showDialog()
+                          break;
+                      case "select3":
+                          sel3.showDialog()
+                          break;
+                      case "select4":
+
+                          sel4.showDialog()
+                      break;
+                      case "select5":
+                          sel5.showDialog()
+                          break
+                      default:
+                          sel.showDialog()
+
+                  }
+            })
+        }
+        )
+    </script>
+    <title></title>
+<style>
+    body{
+        font-size: 12px;
+    }
+</style>
+</head>
+<body>
+<h2>总部部门选择</h2>
+<p>多部门选择</p>
+<div style="margin: 10px">
+    部门名称：<input data-type="levelselect" style="width: 600px;" value="内审部,投资部"  type="text" name='department'>
+    <input type="button" value="公司总部" name="select"/>
+    <br>
+    <h2>研发中心选择</h2>
+    <p>一个总部门选择</p>
+    部门路径：<input  name="rddepart" style="width: 600px" type="text"/>
+    <input type="button" value="研发中心" name="select2"/>
+    <br>
+    <h2>供应链选择</h2>
+    <p>一个总部门选择，且只能选择一个层级</p>
+    部门名称：<input  name="scmdept" style="width: 300px" type="text"/>
+    部门主管：<input  name="scmdeptname" style="width:200px" type="text"/>
+    <input type="button" value="供应链" name="select3"/>
+
+    <h2>研发中心/供应链选择</h2>
+    <p>多根节点组合选择</p>
+    部门名称：<input  name="dept5name" style="width: 300px" type="text"/>
+    部门主管：<input  name="dept5manager" style="width:200px" type="text"/>
+    <input type="button" value="供应链" name="select5"/>
+</div>
+
+
+<h2>知识库分类选择</h2>
+<p>知识库需要先登录系统<a href="http://apptest.xxx.com.cn" target="_blank">http://apptest.xxx.com.cn</a></p>
+部门路径：<input  name="kmcate" style="width: 600px" type="text"/>
+<input type="button" value="知识库分类" name="select4"/>
+<br>
+<h2>研发产品信息</h2>
+
+产品信息:<input name="s1_cpxh_1">
+<h2>研发部门选择</h2>
+部门路径<input name="deptpath" value=""/>
+</body>
+</html>

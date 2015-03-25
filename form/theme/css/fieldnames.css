@@ -1,0 +1,35 @@
+.fieldname {
+	background-repeat: no-repeat;
+	line-height: 20px;
+	padding: 0px 5px 0px 20px;
+}
+
+.usermulti {
+	background-image: url("../images/icon_usermulti.png");
+	background-position: 0px 5px;
+}
+
+.usersingle {
+	background-image: url("../images/icon_usersingle.png");
+	background-position: 0px 50%;
+}
+
+.namebox {
+	
+}
+
+.namebox .dropdownul {
+	margin: 0px;
+	padding: 0px;
+}
+
+.namebox .dropdownul  li {
+	cursor: pointer;
+	margin: 0px;
+	list-style: none;
+	padding: 3px 5px;
+}
+
+.namebox .dropdownul li:hover,.namebox .dropdownul .selected {
+	background-color: #E0F1FF;
+}

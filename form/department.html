@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        require={
+            baseUrl:"/domjs"
+        }
+     </script>
+    <script type="text/javascript" src="/domjs/rjq202.js"></script>
+    <script type="text/javascript">
+
+        $(function(){
+            require(["base/objectjEngine"], function (eg)
+                    {
+                        eg("body")
+                    }
+            )
+        })
+    </script>
+    <title></title>
+    <style>
+        body{
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<h2>总部部门选择</h2>
+<p>多部门选择</p>
+<div style="margin: 10px">
+    <section>
+        <h3>
+            操作说明:
+
+        </h3>
+       <p>
+           单选：双击选中，单击选择后点击确认选择
+       </p>
+        <p>
+        多选：单击，分类自动展开（第一次点击时，如果是分类，或显示checkbox按钮，用于选择所有子记录）<br>
+             双击选中记录（注意选择分类是双击而非点击记录后的checkbox）
+    </p>
+    </section>
+    <p style="color: red;">请先登录生产环境再进行测试</p>
+    部门名称：<input data-type="department" style="width: 600px"  type="text" name='department' data-multi=true  data-selectcate=true>
+
+    <br>
+    <h2>研发中心选择</h2>
+
+    部门路径：<input  data-type="department"  name="rddepart" style="width: 600px"
+                 type="text"
+                 data-root="000004"
+                 data-rootlabel="研发中心"
+                 data-leveldepth=2
+                 data-multi=false
+        />
+
+    <br>
+    <h2>供应链选择</h2>
+    <p>且只能选择一个层级</p>
+    部门名称：<input  data-type="department" name="scmdept" style="width: 300px" type="text"
+                 type="text"
+                 data-root="000238"
+                 data-rootlabel="供应链"
+                 data-showpath=false
+                 data-leveldepth=1
+                 data-multi=false
+        /><br>
+    部门主管：<input  name="dept4manager" style="width:200px" type="text"/>
+
+    <h2>研发中心/供应链选择</h2>
+    <p>多根节点组合选择</p>
+    部门名称：<input  data-type="department" name="dept5name"
+                 data-roots='[{dept_code:"000004",dept_name:"研发中心"},{dept_code:"000238",dept_name:"供应链"}] '
+                 data-leveldepth=0
+                 data-multi=false
+                 data-autofields="{dept_manager:'dept5manager'}"
+                 style="width: 300px" type="text"/>
+    <br>
+    部门主管：<input  name="dept5manager" style="width:200px" type="text"/>
+
+</div>
+
+
+</body>
+</html>

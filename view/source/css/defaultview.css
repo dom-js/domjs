@@ -1,0 +1,66 @@
+html{
+}
+body{
+    margin: 0px;
+    font-size: 12px;
+    padding:0px 5px;
+}
+.view table{
+    width: 100%  ;
+    background-color: #cccccc;
+    font-size: 12px;
+}
+
+
+.view td {
+    background-color: #FFF;
+    line-height: 20px;
+    height: 20px;
+}
+.view  tr:focus td {
+    background-color: #ffffcc;
+}
+.view  tr:nth-child(odd) td {
+    background-color: #fcfcfc;
+}
+.view  tr:hover td {
+    background-color: #ffffcc;
+}
+.view   td  a{
+     color: #AA3333;
+     text-decoration: none;
+ }
+/*
+.view tbody td,.view tbody td div{
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+*/
+
+.view   td  a:visited{
+    color: #64a4ff;
+    text-decoration: none;
+  
+}
+.view   td {
+    height: 22px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.view th{
+    background-color:#AA3333;
+    line-height: 22px;
+    height: 22px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFF;
+}
+.view .view_cate_expandico{
+    cursor: pointer;
+}
+.infotitle th, td.infotitle{
+    background-color: #fcf7ca;
+    color: #044062;
+}

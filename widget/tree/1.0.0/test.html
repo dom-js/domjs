@@ -1,0 +1,383 @@
+<!DOCTYPE HTML >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="/domjs/r.js"></script>
+    <title>树组件演示界面</title>
+    <script type="text/javascript">
+        /**
+         * 因所以开发都还不是最终版本，在使用过程中，请将当前版本的相关代码 copy到目标数据库内，并按照层次结构定义
+         */
+        //需要引入 r.js 文件
+        //配置 require
+        //    baseUrl ：指定js文件夹目录
+        //    配置通过paths配置  tree 和 contextmenu 所使用的版本 （也可以在require的时候直接指定版本）
+        require.config({
+           baseUrl:"/domjs",
+           paths:{
+               "widget/tree":"widget/tree/1.0.0/tree",
+               "widget/contextmenu":"widget/contextmenu/1.0.0/contextmenu",
+               "store/dxlstore":"store/dxlstore/1.0.0/dxlstore"
+           }
+        })
+        /**
+         * 直接指定版本方式
+         * require( [ "store/dxlstore", "widget/tree/1.0.0/tree" ,"widget/contextmenu/1.0.0/contextmenu"], function(Store, Tree,Menu) {})
+         */
+        /**
+         * 引入的 三个模块分别映射到 require第二个参数函数的三个参数
+         */
+        require( [ "store/dxlstore", "widget/tree" ,"widget/contextmenu"], function(Store, Tree,Menu) {
+            /**
+             * 定义 Store
+             * dbpath:数据库路径
+             * view:要关联的视图
+             * catename:每一个entry记录内，表示分类id的字段name（注意是视图列name而不是列标题），根据次列获取子节点
+             */
+            var store = new Store( {
+                dbpath : "/xxx/ykh/templatedemob.nsf",
+                view : "SysNavi",
+                catename : "child"
+            })
+
+
+
+
+            /**
+             * 定义菜单内容，没个item必须包含一个text属性，目前只支持 onclick方法
+             */
+            var items = [{
+                text:"添加节点",
+                onclick:function(){
+                    addNode("addNode");
+                }
+            },{
+                text:"删除节点",
+                onclick:function(){
+                    var node = this.panel.targetItem
+                    require( [ "widget/jbox" ], function(jBox) {
+                        jBox.alert("是否确认删除" + node.item.label ,"删除确认",{
+                            submit : function(v) {
+                                if(v==1){
+                                    jBox.tip("正在删除，请稍候","loading")
+                                        //此处可以使用一个ajax处理，完成后调用删除，以保证与后台业务数据的一致性。
+                                    setTimeout(function(){
+                                        jBox.closeTip()
+                                        node.tree.removeNode(node);
+                                    },1000)
+                                    return true
+                                }else{
+                                    return true;
+                                }
+                            },
+                            buttons:{
+                                "确认":1,
+                                "取消":0
+                            }
+                        })
+                    })
+                }
+            }]
+            /**
+             * 创建一个新的菜单
+             * items:菜单内容
+             */
+            var menu = new Menu({
+                items:items
+            })
+            /**
+             * 定义一个树对象，参数
+             * el:树要展示在那一个dom元素上，使用jquery 的CSS查询返回
+             * store:树要绑定的数据源
+             * childproperty：树元素子节点属性对应的store元素的记录属性
+             * labelproperty：树元素节点要显示的label名称与store元素记录属性的映射，默认label
+             * rootShow：是否显示根节点
+             * rootLabel:根节点名称
+             * onclick:节点点击事件，时间内 this关键字指向当前节点
+             * onadd：添加节点事件（添加完成后执行）
+             * onremove：删除节点事件，节点删除后执行
+             * oncontextmenu：右键时间
+             *canRemoveFolder：是否允许删除文件夹
+             */
+            /**
+             * 方法/属性
+             * addNode,添加节点
+             * addNode要求选择一个节点，然后执行addNode，参数 items对应一个obj记录，包含一组与事前定义相符的属性
+             * removeNode，删除节点,参数 是node，如果无参数，则为选择的节点
+             */
+            var tree = new Tree( {
+                el : $("#treepanel"),
+                store : store,
+                childproperty : "child",
+                rootLabel : "导航",
+                rootShow : true,
+                canRemoveFolder:true,
+                onclick : function(event) {
+                    /**
+                     * this关键字返回当前节点，节点属性item为对应的store对象的item
+                     */
+                    var node =this
+                    if(node.isFolder) return false;
+                    require( [ "widget/jbox" ], function(jBox) {
+                        jBox.info(node.item.label,node.item.label)
+                    })
+                },
+                /**
+                 * 右键事件，this关键字返回当前节点，节点属性item为对应的store对象的item
+                 */
+                oncontextmenu : function(e){
+                    //设置菜单目标对象（既菜单所属的主体）
+                    menu.setTarget(this);
+                    menu.show(e);
+                    // this.tree.removeNode(this);
+                    return false;
+                },
+                /**
+                 * 添加和删除参数为非鼠标事件,this返回当前添加后的节点
+                 */
+                onadd:function(){
+                },
+                /**
+                 * 删除节点后事件，this返回当前节点,onremove 存在，return true才会被删除，否则不被删除
+                 */
+                onremove : function() {
+                    console.log(this.isFolder)
+                    if(this.isFolder)
+                    require(["widget/jbox"],function(jbox){
+                        jbox.alert("不能删除分类")
+                    })
+                    else
+                    return true;
+                }
+            });
+            var addNode = function(method){
+
+                require(["widget/jbox"],function(jbox){
+                    var strhtml ="<div>" +
+                            "<div><span>Label:</span><input name='label'/></div>" +
+                            "<div><span>child</span><input name='child'></div>"+
+                            "</div>"
+                    jbox.info(strhtml,"插入节点",{
+                        submit:function(v,h,d){
+                            if(v==0)return true;
+                            tree[method]({
+                                item:d
+                            });
+                            jbox.tip("添加成功","success")
+                            return true;
+                        },
+                        buttons:{
+                            "确认":1,
+                            "取消":0
+                        }
+                    })
+                })
+            }
+            $("#add").on("click",function(){
+                addNode("addNode");
+            })
+            $("#insert").on("click",function(){
+                addNode("insertNode");
+            })
+
+            //另外一棵分类视图数
+            var store2 = new Store({
+                dbpath:" http://develop.xxx.com.cn/xxx/hcr/gdzc/wfzccg.nsf",
+                view:"FlowByType",
+                catetype:"multi" //分类类型 需要声明为 多分类（默认 single）
+            })
+            var tree2 = new Tree( {
+                el : $("#treepanel2"),
+                store : store2,
+                label:["wftype","s1_dept","s1_appid"] //, //多分类分类视图lable无固定列，lable指定数组，后台会根据次数组以此匹配。
+//                rootLabel : "导航",
+//                rootShow : true,
+//                rootKey:"0" //多分类视图需要指定rootkey = 0
+
+            })
+        })
+
+
+    </script>
+</head>
+<body>
+    <div>树组件需要 requirejs/jQuery的支持</div>
+    <div id="treepane">
+        <button id="add">添加节点</button>
+    </div>
+    <div id="treepanel" style="margin-left:0px;float: left; font-size:12px;width:200px;height:200px; overflow-x: auto; overflow-y: auto;border:1px solid #2F6FAB;"></div>
+    <div id="treepanel2" style="overflow:auto;margin-left:20px;float: left;font-size:14px; width:200px;height: 200px;border:1px solid #2F6FAB;"></div>
+    <div id="descript" style="clear: both;margin: 20px; border: 1px solid #2F6FAB; height: 0px;overflow-y: auto;">
+        <code>
+            <pre>
+                   /**
+         * 因所以开发都还不是最终版本，在使用过程中，请将当前版本的相关代码 copy到目标数据库内，并按照层次结构定义
+         */
+        //需要引入 r.js 文件
+        //配置 require
+        //    baseUrl ：指定js文件夹目录
+        //    配置通过paths配置  tree 和 contextmenu 所使用的版本 （也可以在require的时候直接指定版本）
+        require.config({
+            baseUrl:"/domjs",
+           paths:{
+               "widget/tree":"widget/tree/1.0.0/tree",
+               "widget/contextmenu":"widget/contextmenu/1.0.0/contextmenu"
+           }
+        })
+
+        /**
+         * 直接指定版本方式
+         * require( [ "store/dxlstore", "widget/tree/1.0.0/tree" ,"widget/contextmenu/1.0.0/contextmenu"], function(Store, Tree,Menu) {})
+         */
+        /**
+         * 引入的 三个模块分别映射到 require第二个参数函数的三个参数
+         */
+        require( [ "store/dxlstore", "widget/tree" ,"widget/contextmenu"], function(Store, Tree,Menu) {
+            /**
+             * 定义 Store
+             * dbpath:数据库路径
+             * view:要关联的视图
+             * catename:每一个entry记录内，表示分类id的字段name（注意是视图列name而不是列标题），根据次列获取子节点
+             */
+            var store = new Store( {
+                dbpath : "/xxx/ykh/templatedemob.nsf",
+                view : "SysNavi",
+                catename : "child"
+            })
+            /**
+             * 定义菜单内容，没个item必须包含一个text属性，目前只支持 onclick方法
+             */
+            var items = [{
+                text:"添加节点",
+                onclick:function(){
+                    addNode("addNode");
+                }
+            },{
+                text:"删除节点",
+                onclick:function(){
+                    var node = this.panel.targetItem
+                    require( [ "widget/jbox" ], function(jBox) {
+                        jBox.alert("是否确认删除" + node.item.label ,"删除确认",{
+                            submit : function(v) {
+                                if(v==1){
+                                    jBox.tip("正在删除，请稍候","loading")
+                                        //此处可以使用一个ajax处理，完成后调用删除，以保证与后台业务数据的一致性。
+                                    setTimeout(function(){
+                                        jBox.closeTip()
+                                        node.tree.removeNode(node);
+                                    },1000)
+                                    return true
+                                }else{
+                                    return true;
+                                }
+                            },
+                            buttons:{
+                                "确认":1,
+                                "取消":0
+                            }
+                        })
+                    })
+                }
+            }]
+            /**
+             * 创建一个新的菜单
+             * items:菜单内容
+             */
+            var menu = new Menu({
+                items:items
+            })
+            /**
+             * 定义一个树对象，参数
+             * el:树要展示在那一个dom元素上，使用jquery 的CSS查询返回
+             * store:树要绑定的数据源
+             * childproperty：树元素子节点属性对应的store元素的记录属性
+             * labelproperty：树元素节点要显示的label名称与store元素记录属性的映射，默认label
+             * rootShow：是否显示根节点
+             * rootLabel:根节点名称
+             * onclick:节点点击事件，时间内 this关键字指向当前节点
+             * onadd：添加节点事件（添加完成后执行）
+             * onremove：删除节点事件，节点删除后执行
+             * oncontextmenu：右键时间
+             *canRemoveFolder：是否允许删除文件夹
+             */
+            /**
+             * 方法/属性
+             * addNode,添加节点
+             * addNode要求选择一个节点，然后执行addNode，参数 items对应一个obj记录，包含一组与事前定义相符的属性
+             * removeNode，删除节点,参数 是node，如果无参数，则为选择的节点
+             */
+            var tree = new Tree( {
+                el : $("#treepanel"),
+                store : store,
+                childproperty : "child",
+                rootLabel : "导航",
+                rootShow : true,
+                onclick : function(event) {
+                    /**
+                     * this关键字返回当前节点，节点属性item为对应的store对象的item
+                     */
+                    var node =this
+                    if(node.isFolder) return false;
+                    require( [ "widget/jbox" ], function(jBox) {
+                        jBox.info(node.item.label,node.item.label)
+                    })
+                },
+                /**
+                 * 右键事件，this关键字返回当前节点，节点属性item为对应的store对象的item
+                 */
+                oncontextmenu : function(e){
+                    //设置菜单目标对象（既菜单所属的主体）
+                    menu.setTarget(this);
+                    menu.show(e);
+                    // this.tree.removeNode(this);
+                    return false;
+                },
+                /**
+                 * 添加和删除参数为非鼠标事件,this返回当前添加后的节点
+                 */
+                onadd:function(){
+                },
+                /**
+                 * 删除节点后事件，this返回当前节点 onremove 存在，return true才会被删除，否则不被删除
+                 */
+                onremove : function(deferred) {
+                    return
+                }
+            });
+            var addNode = function(method){
+
+                require(["widget/jbox"],function(jbox){
+                    var strhtml ="<div>" +
+                "&ltdiv>&ltspan>Label:&lt/span>&ltinput name='label'/>&lt/div>" +
+                "&lt<div>&ltspan>child&lt/span>&ltinput name='child'>&lt/div>"+
+                "&lt/div>"
+                    jbox.info(strhtml,"插入节点",{
+                        submit:function(v,h,d){
+                            if(v==0)return true;
+                            tree[method]({
+                                item:d
+                            });
+                            jbox.tip("添加成功","success")
+                            return true;
+                        },
+                        buttons:{
+                            "确认":1,
+                            "取消":0
+                        }
+                    })
+                })
+            }
+            $("#add").on("click",function(){
+                addNode("addNode");
+            })
+            $("#insert").on("click",function(){
+                addNode("insertNode");
+            })
+        })
+
+
+            </pre>
+        </code>
+    </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        var require
+        require={
+            baseUrl:"//develop.xxx.com.cn/domjs"
+        }
+    </script>
+    <script type="text/javascript" src="/domjs/require-jquery2.js"></script>
+    <script type="text/javascript">
+
+        require(["base/objectjEngine"], function (eng)
+        {
+            eng("body")
+        }
+        )
+        $(function(){
+        $("input[name=name2]").on("select load",function(e,item){
+            if(item){
+                var res = []
+                $.each(item,function(name,value){
+                    res.push(name+":"+value)
+                })
+                $("#name2p").html(res.join("<br>"))
+            }
+        })
+        })
+    </script>
+    <style >
+        td{
+            border: 1px solid #0066cc;
+        }
+    </style>
+    <title></title>
+
+</head>
+<body >
+<table style="height: 100%;width: 100%;border: 1px" >
+    <tr style="height: 200px"><td style="vertical-align: top;">
+
+        <h4>  仅群组选择，使用老方式选择 </h4>
+        <b>HTML</b>
+        <pre>  &lt;input id="name1" data-type="names"
+               style="width: 200px"
+               data-multi=true
+               data-hasbt=true
+              data-listtype=g
+                / /&gt;</pre>
+        <input id="name1" data-type="names"
+               style="width: 200px"
+               data-multi=true
+               data-hasbt=true
+              data-listtype=g
+                />
+
+    </td><td style="vertical-align: top;width: 500px;" >
+
+        <h4>用户选择，且使用老方式选择用户 </h4>
+        <b>HTML</b>
+        <pre>  &lt;input data-type="names"  data-dialog=true data-hasbt=true   name="name2" value="李小靓" /&gt;</pre>
+        <b>js</b>:
+          <pre >
+          $("input[name=name2]").on("select load",function(e,item){
+                if(!item) return false;
+                var res = []
+                $.each(item,function(name,value){
+                      res.push(name+":"+value)
+                })
+                $("#name2p").html(res.join("&lt;br&gt;"))
+            })
+
+          </pre>
+
+        <input data-type="names" readonly  name="name2" value="李小靓" />
+
+        <p id="name2p">
+            
+            
+        </p>
+    </td><td style="vertical-align: top;text-align: right">
+        <h4>  用户选择，且允许选择群组和用户 </h4>
+        <b>HTML</b>
+        <pre>  &lt;input data-type="names"
+               style="width: 200px"
+               data-multi=true
+               value="陈晓芳,张建军,陈春,张建,张建楠,张建文"
+               data-listtype="all"
+                  /&gt;</pre>
+        <input data-type="names"
+               style="width: 200px"
+               data-multi=true
+               value="陈晓芳,张建军,陈春,张建,张建楠,张建文"
+               data-listtype="all"
+                />
+    </td></tr>
+    <tr style="vertical-align: top;"><td style="width: 30%;height: 650px">
+        <h4>  普通多用户选择 </h4>
+        <b>HTML</b>
+        <pre>  &lt;data-type="names"
+               style="width: 200px"
+               data-multi=true
+               value="江华军"
+                  /&gt;</pre>
+        <input data-type="names"
+               style="width: 200px"
+               data-multi=true
+               value="江华军"
+                />
+    </td><td style="width: 30%">
+
+        <h4>  单个用户自动带出 </h4>
+        <b>HTML</b>
+        <pre>  &lt;data-type="names"
+               data-autofileds='{"DEPT_PATH":"department","USER_CELLPHONE":"phone","DEPT_MANAGER":"manager","DEPT_LEADER":"leader"}'
+               value="尹克浩"
+                  /&gt;</pre>
+
+        <input data-type="names"
+               data-autofileds='{"DEPT_PATH":"department","USER_CELLPHONE":"phone","DEPT_MANAGER":"manager","DEPT_LEADER":"leader"}'
+
+               value="尹克浩"
+                />
+        <br><br>
+         //配置
+        data-autofileds='{"DEPT_PATH":"department","USER_CELLPHONE":"phone","DEPT_MANAGER":"manager","DEPT_LEADER":"leader"}'
+
+
+    </td><td>
+        <br>
+        部门：<input name='department'> <br>
+        电话：<input name="phone"> <br>
+        主管：<input name="manager"> <br>
+
+        领导：<input name="leader" style="width: 100%;">
+    </td></tr>
+    <tr><td style="vertical-align:bottom; height: 50px;">
+        <input data-type="names"
+               data-multi=true
+                />
+        边界测试3
+    </td><td></td><td style="vertical-align: bottom;text-align: right">
+        边界测试4 <input data-type="names"
+               style="width: 200px"
+               data-multi=true
+                />
+
+    </td></tr>
+</table>
+
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="/domjs/require-jquery.js"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl:"/domjs",
+            paths:{}
+        })
+        require(["base/util"],function(util){
+            util.ws({
+                onlyie:true,
+                wsdl:"http://mb.xxx.com.cn/xxx/it/lotussapinterface.nsf/lotussapdev?wsdl",
+                location:"http://mb.xxx.com.cn/xxx/it/lotussapinterface.nsf/lotussapdev?OpenWebService"
+            }).pipe(function(ac){
+                       return ac.Z_I_MM_EXTEND_VIEW_OA("<![CDATA[&MATNR=301303450&VKORG=8100]]>").pipe(function(arg){
+                            console.log(arg)
+                       })
+              });
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

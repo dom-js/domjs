@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="/domjs/rjq202.js"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl:"/domjs",
+            paths:{}
+        })
+        require(["store/viewstore"], function (viewstore) {
+           var store = new viewstore({
+                host:"develop.xxx.com.cn",
+                // db:"/xxx/ykh/templatedemov0108.nsf",
+               db:"/xxx/ykh/scmengchange.nsf",
+               count:15,
+               //  view:"FlowByDocUNID"
+              // queryengine:"open",
+               view:"EndBySerial"
+              // view:"FlowByDocUNID2"
+           })
+
+                var onload=function(data,el){
+                    $("#pre").attr("disabled",data.fristpage)
+                    $("#next").attr("disabled",data.lastpage)
+                     el = el||$("table#view")
+                     el.empty()
+                    //console.log(data)
+                   $.each(data,function(i,item){
+                       var str = ""
+                       var tr=$("<Tr></Tr>")
+                       for(var j in item){
+                        if(!/^_/.test(j)){
+                         var td = $("<td></td>")
+                          if( typeof item[j].type != "undefined" && item[j].type=="category"){
+                                var cate = $("<a href=\"#\"></a>")
+                              cate.text(item[j].toString())
+                                var key = item[j].expandkey
+                                  if(item[j].colspan)
+                                td.attr("colspan",item[j].colspan)
+                                      cate.on("click",function(){
+
+                                         store.query({},{start:1,expand:key}).then(function(data){
+                                             onload(data)
+                                         })
+                                      })
+                                td.append(cate)
+                             }else{
+                                  td.text(item[j].toString())
+                             }
+                            tr.append(td)
+                           }
+
+                       }
+                       el.append(tr)
+                   })
+
+                }
+                $(function(){
+                    var total;
+                    // store.query({query:"test01"}).then(onload);
+                    store.load().then(onload);
+                    $("#next").on("click",function(){
+                        var start = (store.options.start||1)+store.options.count
+                        store.query({},{start:start}).then(onload)
+                    })
+                    $("#pre").on("click",function(){
+                        var start = (store.options.start||1)-store.options.count
+                        store.query({},{start:start}).then(onload)
+                    })
+                    $("#query").on("keyup",function(){
+                      //  store.query({startkey:this.value}).then(onload)
+                        store.query({query:this.value}).then(onload)
+                    })
+                })
+
+        })
+    </script>
+    <title></title>
+
+</head>
+<body>
+<table>
+    <tr><td><button id="pre">上一页</button></td><td><button id="next">下一页</button></td><td><input name="query" id="query"/></td></tr>
+</table>
+<table id="view" border="1px">
+
+</table>
+
+</body>
+</html>

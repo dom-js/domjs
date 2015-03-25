@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script type="text/javascript">
+    require={baseUrl:"/domjs"}
+</script>
+
+<script type="text/javascript"data-main="main" src="/domjs/rjq202.js"></script>
+<script type="text/javascript">
+require(["m!widget/levelselect:1.3.0","store/viewstore"], function (levelselect,Store)
+        {
+            var store = new Store({
+                host:"apptest.xxx.com.cn",
+                db:"/xxx/hr/basic/hrbasic.nsf",
+                view:"Department",
+                idproperty:"dept_code"
+            })
+            var store2 = new Store({
+                host:"rddevelop.xxx.com.cn",
+                db:"/xxx/rdweb/rdorg.nsf",
+                view:"(dlOrgDeptByDeptMng)",
+                idproperty:"dept_code"
+            })
+            var sel5= levelselect("[name=dept5name]",{
+                store:store,
+                roots:[{dept_code:"root2",dept_name:"研发中心",__store__:store2},{dept_code:"000238",dept_name:"供应链"}],
+                rootlabel:"海康威视",
+                label:"dept_name",
+                showpath:true,
+                showcols:2,
+                infolayout:[[{label:"部门名称",field:"dept_name"},{label:"部门编号",field:"dept_code"}]]
+            })
+            var sel6= levelselect("[name=dept5name]",{
+                store:store,
+              //  root:"000001",
+                roots:[{dept_code:"root2",dept_name:"研发中心",__store__:store2},{dept_code:"000238",dept_name:"供应链"}],
+                rootlabel:"海康威视",
+                label:"dept_name",
+                showpath:true,
+                showcols:3,
+                map:function(item){
+                    if(item.dept_code=="000004"){
+                        item["__store__"] = store2
+                        item.dept_code = "root2"
+                    }
+                    return item
+                },
+                infolayout:[[{label:"部门名称",field:"dept_name"},{label:"部门编号",field:"dept_code"}]]
+            })
+            $("input[name=select1]").on("click",function(){
+                        sel5.showDialog()
+            })
+            $("input[name=select2]").on("click",function(){
+                sel6.showDialog()
+            })
+        }
+)
+</script>
+<title></title>
+<style>
+    body{
+        font-size: 12px;
+    }
+</style>
+</head>
+<body>
+
+<div style="margin: 10px">
+
+    <h2>多根节点组合选择</h2>
+    部门名称：<input  name="dept5name" style="width: 300px"  type="text"/>
+    <input type="button" value="选择1" name="select1"/>
+
+    <input type="button" value="选择2" name="select2"/>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="/domjs/r.js"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl:"/domjs",
+            paths:{
+                "store/dxlstore":"store/dxlstore/1.0.0/dxlstore"
+            }
+        })
+        require(["store/dxlstore"],function(Store){
+            var store = new Store({
+                dbpath : "/xxx/ykh/templatedemob.nsf",
+                view : "SysNavi"
+            })
+            store.load().each(function(i,item){
+           //   console.log(item)
+            })
+            var store2 = new Store({
+                dbpath:" http://develop.xxx.com.cn/xxx/hcr/gdzc/wfzccg.nsf",
+                view:"FlowByType",
+                catetype:"multi"
+            })
+            store2.load().each(function(i,item){
+                store2.getChildren(item).each(function(i,item){
+                  //  console.log(item)
+                })
+
+            })
+
+        })
+    </script>
+    <title></title>
+
+</head>
+<body>
+<div id="itemlist"></div>
+</body>
+</html>

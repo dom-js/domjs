@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>appinfo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: 29d1c5bc36da364ad5aa86946d420b7bbc54a253 */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+
+
+
+</style>
+<script  src="http://develop.xxx.com.cn/domjs/require-jquery.js" type="text/javascript">
+</script>
+<script  src="http://develop.xxx.com.cn/domjs/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="http://develop.xxx.com.cn/domjs/bootstrap/css/bootstrap.min.css"></link>
+<script>
+ require.config({
+  baseUrl:"http://develop.xxx.com.cn/domjs"
+  })
+</script> 
+  
+
+<script> 
+$("head").prepend("<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">")
+$(function(){
+require(["base/util"],function(util){
+ 	var b = $("body>*").filter(":not(script)");
+ 	
+ 	b.wrapAll("<div class='span9'></div>");  
+ 	
+	var mainbody =  $("body").find(">.span9")
+	mainbody.prepend($("h1"))
+	mainbody.wrap("<div class='row'>");
+	var rowbody =  $("body").find(">.row"); 
+	rowbody.wrap("<div class='container'>");
+	var container =  $("body").find(">.container");  
+	var span3 = $("<div class='span3 bs-docs-sidebar'>")    
+	rowbody.prepend(span3) 
+	var nav = $("a[id]").map(function(i,a){
+		var l = $("<a href='#"+a.id+"'><span>"+$(a).text()+"</span></a>");
+		return $("<li>").append(l).get(0);
+	})
+	var nav = $("h2").map(function(i,h2){
+		var id = "ID"+i;
+		var $h2 =$(h2)
+		$h2.wrapInner("<a id='"+id+"'></a>");		
+		var l = $("<a href='#"+id+"'><span>"+$h2.text()+"</span></a>");
+		return $("<li>").append(l).get(0);
+	})
+	
+	var navP = $("<ul class='nav nav-list bs-docs-sidenav'>");
+	navP.append(nav);
+	span3.append(navP);
+	
+	$("body").scrollspy({target:".bs-docs-sidebar"});
+	navP.affix()
+	
+});	
+});
+</script> 
+<style>
+code,pre{
+font-size:12px;
+}
+/* Sidenav for Docs
+-------------------------------------------------- */
+
+.bs-docs-sidenav {
+  width: 228px;
+  margin: 30px 0 0;
+  padding: 0;
+  background-color: #fff;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+     -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+          box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+.bs-docs-sidenav > li > a {
+  display: block; 
+  margin: 0 0 -1px;
+  padding: 8px 14px;
+  border: 1px solid #e5e5e5;
+}
+.bs-docs-sidenav > li:first-child > a {
+  -webkit-border-radius: 6px 6px 0 0;
+     -moz-border-radius: 6px 6px 0 0;
+          border-radius: 6px 6px 0 0;
+}
+.bs-docs-sidenav > li:last-child > a {
+  -webkit-border-radius: 0 0 6px 6px;
+     -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+}
+.bs-docs-sidenav > .active > a {
+  position: relative;
+  z-index: 2;
+  padding: 9px 15px;
+  border: 0;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+     -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+          box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+}
+</style>
+</head>
+<body>
+<h2>getdoc</h2>
+<p><strong>getdoc(key,path,view) [Public]</strong></p>
+<h3>参数</h3>
+<ul>
+<li><strong>key</strong>(String):视图第一列key或者文档unid</li>
+<li><strong>path</strong>(String)[Option]:文档所在数据库，默认为当前数据库</li>
+<li><strong>view</strong>(String)[Option]:Domino视图，默认为<code>(All)</code>视图</li>
+</ul>
+<h3>代码</h3>
+<pre><code>    getdoc=function(key,dbpath,view){
+        key = key.toUpperCase()
+        var dbpath = typeof dbpath==&quot;string&quot;?(dbpath==&quot;&quot;?this.dbpath:dbpath):this.dbpath;
+        var view = typeof view==&quot;string&quot;?(view==&quot;&quot;?&quot;(all)&quot;:view):&quot;(all)&quot;;
+        var _url = dbpath+&quot;/&quot;+view+&quot;/&quot;+key+&quot;?opendocument&amp;form=SysOpenDocByJSON&quot;
+        // if(key.length!=32)
+        var cacheKey = _url
+        if(!docCache[cacheKey]||!docCache[cacheKey].pipe){ 
+            docCache[cacheKey] =getdocaspart(_url,key); 
+        }
+
+        return  docCache[cacheKey] ;
+    }
+</code></pre>
+
+<h3>依赖</h3>
+<ul>
+<li>Domino数据库表单<code>01.System\13.Open Doc With JSON | SysOpenDocByJSON</code></li>
+<li>
+<p>Domino视图 <code>(All)</code> 或者其他可以通过url参数<code>Form</code>且值为<code>SysOpenDocByJson</code>指定文档打开视表单的视图</p>
+</li>
+<li>
+<p>数据库表单返回文档格式<code>application/json</code> </p>
+<pre><code>define(&quot;&lt;计算的值&gt;&quot;,
+//begin v1.x content
+{
+    &lt;计算的值&gt;  
+}
+);
+</code></pre>
+
+</li>
+<li>
+<p>计算公式1：</p>
+<pre><code>@If(@UrlQueryString(&quot;module&quot;)=&quot;&quot;;@Text(@DocumentUniqueID);@UrlQueryString(&quot;module&quot;))
+</code></pre>
+
+</li>
+<li>
+<p>计算公式2：</p>
+<pre><code>fields:=@DocFields;
+vals:=&quot;&quot;;
+start:=@UrlQueryString(&quot;start&quot;);
+limit:=@UrlQueryString(&quot;limit&quot;);
+start:=@If(start=&quot;&quot;;1;@TextToNumber(start));
+limit:=@If(limit=&quot;&quot;;500;@TextToNumber(limit));
+max:=@Elements(fields);
+len:=start-1;
+rejectlist:=&quot;$Revisions&quot;:&quot;$UpdatedBy&quot;:&quot;$$HTMLHead&quot;:&quot;Query_String_Decoded&quot;:&quot;$$QuerySaveAgent&quot;:&quot;$V2AttachmentOptions&quot;:&quot;$ConflictAction&quot;;
+
+@For(i:=start;i&lt;start+limit;i:=i+1;@Do(
+
+ f:=fields[i];
+   _v:=@IfError(@GetField(f);&quot;&quot;);
+
+@If(@IsMember(f;rejectlist);@Do(max:=max-1);
+@Do(
+   len:=len+1;
+    @If(@Elements(_v)&gt;1;@Do(
+        __v:=&quot;[&quot;;
+        @For(j:=1;j&lt;=@Elements(_v);j:=j+1;@Do(
+                __v2:=_v[j];
+                __v1:=@If(@IsNumber(__v2);__v2;@If(@Text(__v2)=&quot;&quot;;&quot;\&quot;\&quot;&quot;;&quot;decodeURIComponent(\&quot;&quot;+@ReplaceSubstring(@URLEncode(&quot;UTF-8&quot;;@Text(__v2));&quot;%00&quot;;&quot;&quot;)+&quot;\&quot;)&quot;));
+                __v:=__v+ __v1+@If(j=@Elements(_v);&quot;&quot;;&quot;,&quot;)
+            )
+        );
+        __v:=__v+&quot;]&quot;
+    );@Do(
+            __v2:=_v;
+            __v:=@If(@IsNumber(__v2);__v2;@If(@Text(__v2)=&quot;&quot;;&quot;\&quot;\&quot;&quot;;&quot;decodeURIComponent(\&quot;&quot;+@ReplaceSubstring(@URLEncode(&quot;UTF-8&quot;;@Text(__v2));&quot;%00&quot;;&quot;&quot;)+&quot;\&quot;)&quot;))
+        )
+    );
+   v:=__v;
+   f:=&quot;\&quot;&quot;+f+&quot;\&quot;:&quot;+@Text(v)+&quot;&quot;;
+    vals:=vals:f
+))
+));
+vals:(&quot;\&quot;$$unid\&quot;:\&quot;&quot;+@Text(@DocumentUniqueID)+&quot;\&quot;&quot;);
+vals:=vals:(&quot;\&quot;$$max\&quot;:&quot;+@Text(max));
+vals:=vals:(&quot;\&quot;$$length\&quot;:&quot;+@Text(len));
+@Trim(vals)
+</code></pre>
+
+</li>
+</ul>
+<h2>runrule</h2>
+<p><strong>runrule(rulecode,doc,unid,dbpath) [Public]</strong></p>
+<p><strong>Summary</strong></p>
+<p>如果应用程序支持规则机制，则可以通过此方法调用一个规则</p>
+<h3>参数</h3>
+<ul>
+<li><strong>rulecode</strong>(Stirng): 规则编码</li>
+<li>
+<strong>doc</strong>(PlainObject):要传给规则的上下文<code>docContext</code>
+<ul>
+<li>**__AutoSave**:是否字段保存DocTarget，默认为True，规则操作完<code>docTarget</code>会自动保存。	</li>
+</ul>
+</li>
+<li><strong>unid</strong>(String)[Option]：规则<code>docTarget</code>文档unid，如果不存在，则使用<code>docContext</code>作为俄<code>docTarget</code></li>
+<li><strong>dbpath</strong>(String)[Option]:规则所在数据库，默认appinfo.dbpath</li>
+</ul>
+<h2>dicLookUp</h2>
+<p>**dicLookUp(key,field,multi) **</p>
+<h3>参数</h3>
+<ul>
+<li><strong>key</strong>(String|Array):数据字典关键字</li>
+<li><strong>field</strong>(String|Array):字段列表</li>
+<li><strong>multi</strong>(Boolean) [Option]:是否多值，默认false，如果为true，则会返回一个多值映射</li>
+</ul>
+<h2>dicDoc</h2>
+<p><strong>dicDoc(key)</strong></p>
+<h3>参数 ###</h3>
+<ul>
+<li><strong>key</strong>(String|Array):数据字典关键字 ###</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

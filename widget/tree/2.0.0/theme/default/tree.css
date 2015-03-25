@@ -1,0 +1,135 @@
+.treeview {
+    width:inherit;
+    height: inherit;
+    line-height: 0px;
+    overflow: auto;
+}
+
+.treeview ul {
+    width: auto;
+    height: auto;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.treeview ul ul{
+    padding-left: 16px;
+}
+.treeview li {
+	margin: 0;
+    overflow-x:visible;
+	padding: 3px 0px 3px ;
+    background: url("images/line.gif") 0 0 no-repeat;
+    width: auto;
+}
+
+
+.treeview .hover {
+	color: #ff0000;
+	cursor: pointer;
+}
+
+
+.treeview li.last {
+	background-position: 0 -1766px
+}
+.treeview li.root {
+    margin-left: 0px;
+	background:none;
+}
+.treeview ul.rootnolabel {
+    margin: 0px;
+    padding: 0px;
+    background:none;
+}
+.treeview .nodearea{
+    width: auto;
+    height: 16px;
+    line-height: 16px;
+}
+.treeview  .hitarea {
+	background: url(images/hitarea.gif) 0 0 no-repeat;
+	height: 16px;
+	width: 16px;
+	float: left;
+	cursor: pointer;
+    display: inline;
+}
+.treeview .selarea,{
+    float: left;
+    display: inline;
+    height: 16px;
+    width: 16px;
+}
+.treeview .selbox{
+    float: left;
+    height: 16px;
+    width: 16px;
+    background: url(images/checkbox.png) 0 -16px no-repeat;
+}
+.treeview .selarea .sel0{
+     background-position: 0px -16px;
+ }
+.treeview .selarea .sel1{
+    background-position: -0px -32px;
+}
+.treeview .selarea .sel2{
+    background-position: -0px  -0px;
+}
+.treeview .label{
+    cursor: pointer;
+    width: auto;
+    float: left;
+    overflow: visible;
+    white-space:nowrap;
+    display: inline;
+}
+.treeview .exp{
+float: left;
+    display: inline;
+}
+.treeview  .ico{
+    height: 16px;
+    width: 16px;
+    float: left;
+    display: inline;
+}
+.treeview .hitarea_collapseed{
+	background-position: -80px -3px; 
+}
+ 
+
+.treeview .hitarea_expanded{
+	background-position: 0 -114px
+}
+ 
+.treeview .hitarea_collapseed_root{
+	background-position:-48px -48px;
+}
+
+.treeview .hitarea_expanded_root{
+	background-position:-16px -92px;
+} 
+
+.treeview .hitarea_collapseed_last{
+	background-position: -32px -70px
+} 
+.treeview .hitarea_expanded_last{
+	background-position: 0 -114px
+} 
+
+
+.treeview .selectedlabel {
+	color: #ff0000;
+}
+
+.treeview  .ico_expanded {
+    background: url(images/folder.gif) 0 0 no-repeat;
+}
+.treeview  .ico_collapseed  {
+    background: url(images/folder-closed.gif) 0 0 no-repeat;
+}
+
+.treeview   .ico_nurmal {
+	background: url(images/file.gif) 0 0 no-repeat;
+ }

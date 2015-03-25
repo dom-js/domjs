@@ -1,0 +1,102 @@
+.treeview {
+    width: inherit;
+    height: inherit;
+    line-height: 0px;
+    overflow: auto;
+}
+
+.treeview ul {
+    width: auto;
+    height: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.treeview ul ul {
+    padding-left: 16px;
+}
+
+.treeview>ul>li>div>ul>li {
+    margin: 0;
+    overflow-x: visible;
+    padding: 3px 0px 3px;
+    background: url("images/viewNavi_bg1.gif") 0 0 no-repeat;
+    background-repeat: repeat-x;
+    width: auto;
+}
+
+.treeview>ul>li>div>ul>li ul {
+    padding-left: 0px;
+}
+
+.treeview>ul>li>div>ul>li li {
+    margin: 0;
+    overflow-x: visible;
+    padding: 0;
+    background: none;
+    background-color: #F7F7F7;
+    width: auto;
+    border-bottom: 1px solid #c0c0c0;
+    height: 20px;
+    line-height: 20px;
+}
+
+.treeview .hitarea {
+    background: url(images/viewNavi_title.gif) 3px 3px no-repeat;
+    height: 16px;
+    width: 16px;
+    float: left;
+    cursor: pointer;
+    display: inline;
+}
+
+.treeview>ul>li>div>ul>li li .hitarea {
+
+    background: none;
+    width: 30px;
+}
+
+.treeview .label {
+    cursor: pointer;
+    width: auto;
+    float: left;
+    overflow: visible;
+    white-space: nowrap;
+    display: inline;
+}
+
+.treeview>ul>li>div>ul>li li  .label {
+    height: 20px;
+    line-height: 20px;
+}
+
+.treeview .hover {
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.treeview li.root {
+    margin-left: 0px;
+    background: none;
+}
+
+.treeview ul.rootnolabel {
+    margin: 0px;
+    padding: 0px;
+    background: none;
+}
+
+.treeview .nodearea {
+    width: auto;
+    height: 16px;
+    line-height: 16px;
+}
+
+.treeview .exp {
+    float: left;
+    display: inline;
+}
+
+
+

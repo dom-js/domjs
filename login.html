@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/domjs/rjq202.js"></script>
+    <script>
+        require(["jquery"],function($){
+            $(function(){
+                $("[name=userlist]").on("change",function(){
+                    var url =   "http://" + $("[name=server]:checked").val()+"/names.nsf?Login"
+                    var goto =  $("[name=server]:checked").attr("goto")||""
+                    $("form").attr("action",url)
+                   var op = $(this.options[this.selectedIndex]);
+                   var username = op.text(),password=op.val();
+                    if(username=="" || password=="")return false;
+                    $("[name=username]").val(op.text())
+                    $("[name=password]").val(op.val())
+                    $("[name=RedirectTo]").val(goto)
+                   /*
+                    $.post(url,{
+                    username:username,
+                    password:password
+                    }).then(function(data){
+                    //$(win).html(data)
+                    })
+                    */
+                  $("form").submit()
+                })
+
+            })
+        })
+    </script>
+    <title></title>
+</head>
+<body>
+<form action="/names.nsf?Login" method="post" target="login">
+
+    <label for="server">Server</label>
+    <input type="radio" name="server"  value="develop.xxx.com.cn"> Develop
+    <input type="radio" name="server" goto="http://rddevelop.xxx.com.cn/xxx/bxg/pdm/wfmaterial.nsf" value="rddevelop.xxx.com.cn"  checked> RDDevelop
+    <label for="userlist">User List</label>
+    <select name="userlist">
+        <option value=""></option>
+        <option value="1">publicDesign</option>
+        <option value="1">zhaochunbo</option>
+        <option value="1">qianhaiyuan</option>
+        <option value="1">hujiexun</option>
+        <option value="1">test2</option>
+        <option value="1">test01</option>
+        <option value="1">test02</option>
+        <option value="1">test03</option>
+        <option value="1">test04</option>
+        <option value="1">test05</option>
+        <option value="1">test06</option>
+        <option value="1">test07</option>
+        <option value="1">test08</option>
+        <option value="1">test09</option>
+        <option value="1">test10</option>
+        <option value="1">test11</option>
+        <option value="1">test12</option>
+        <option value="1">test13</option>
+        <option value="1">test14</option>
+        <option value="1">test15</option>
+    </select>
+    <label for="Username">Name</label> <input type="text" name="username">
+    <label for="password">Password</label><input type="password" name="password" >
+
+    <label for="submit">Submit</label><input type="submit" value="Submit">
+    <br>
+    <label for="RedirectTo">RedirectTo</label>
+    <input  type="text" name="RedirectTo" style="width: 600px;">
+</form>
+<iframe name="login" src="about:Tabs" width="100%" height="600px;">
+
+</iframe>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ACE in Action</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="editor">
+    function foo(items) {
+    var x = "All this is syntax highlighted";
+    return x;
+    }
+</div>
+
+<script src="http://10.1.21.26:8888/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/vim");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.setShowInvisibles(false)
+    editor.commands.addCommand({
+        name: 'Save File',
+        bindKey: {win: 'Ctrl-S', mac: 'Command-S'},
+        exec: function(editor) {
+            alert("Save")
+        }
+    });
+
+    editor.commands.addCommand({
+        name: 'New File',
+        bindKey: {win: 'Ctrl-N', mac: 'Command-N'},
+        exec: function(editor) {
+            alert("New Flie")
+        }
+    });
+    editor.commands.addCommand({
+        name: 'Opem File',
+        bindKey: {win: 'Ctrl-O', mac: 'Command-O'},
+        exec: function(editor) {
+            alert("Open Flie")
+        }
+    });
+
+</script>
+</body>
+</html>

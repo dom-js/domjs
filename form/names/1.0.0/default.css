@@ -1,0 +1,26 @@
+.widget_dropdown{
+    
+}
+.namesselectpanel{
+    font-size: 12px;
+    background-color:#ffffee;
+    border: 1px solid #c3c3c3;
+    height: 18px;
+    line-height: 18px;
+    margin:0px 1px;
+    padding:1px;
+    word-wrap:
+}
+.namesselectpanel .delbt{
+    cursor:pointer;
+    margin:2px;
+    vertical-align: top;
+    height: 9px;
+    line-height: 9px;
+    font-size: 9px;
+    color: #ff0000;
+   background-image: url("del_4_4.png");
+    background-position: 0px 50%;
+    background-repeat: no-repeat;
+
+}

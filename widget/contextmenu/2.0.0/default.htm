@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="/domjs/r.js"></script>
+    <script>
+        require.config({
+            baseUrl:"/domjs"
+        })
+        require(["widget/dropdown/1.0.0/dropdown"],function(dp){
+            var a = dp("#filter")
+           //   a.sort();
+            $("#filter").on("keyup",function(){
+              //  alert(this.value)
+                if($.trim(this.value)==""){
+                    a.list.show();
+                    return;
+                }
+                a.filter(":contains("+$.trim(this.value)+")")
+            })
+
+        })
+    </script>
+</head>
+<body>
+<div id="dp" ><input id="filter" data-panel="#list"> </div>
+<div id="list" style="width: 200px;">
+    <ul>
+        <li>北京</li>
+        <li>武汉</li>
+        <li>天津</li>
+        <li>济南</li>
+        <li>南昌</li>
+        <li>成都</li>
+        <li>南宁</li>
+        <li>海口</li>
+        <li>首页 </li>
+        <li>首页 </li>
+        <li>行政办公</li>
+        <li>人力资源</li>
+        <li>研发管理</li>
+        <li>系统集成</li>
+        <li>营销管理</li>
+        <li>财务系统</li>
+        <li>法务系统</li>
+        <li>生产管理</li>
+        <li>IT(ERP)流程</li>
+        <li>基建管理</li>
+         <li>子系统</li>
+    </ul>
+</div>
+阿苏大阿嫂单位恶热外科亮晶晶
+</body>
+</html>

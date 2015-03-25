@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>表单组件演示</title>
+    <script data-main="/domjs/main" src='/domjs/require-jquery.js'></script>
+</head>
+<body>
+        <p>
+           <h3> 默认日期选择</h3>
+            <input data-type="datepicker">
+      </p>
+       <p>
+         <h3>  格式化选择日期 data-format="m/d/Y"</h3>
+           <input data-type="datepicker" data-format="m/d/Y" >
+       </p>
+        <p>
+         <h3>   选择方式多选 data-mode="multiple"    //multiple ['single'|'multiple'|'range']</h3>
+            <input data-type="datepicker" data-mode="multiple" style="width: 500px;">
+        </p>
+        <p>
+        <h3>   显示多个日历 data-calendars=2    </h3>
+        <input data-type="datepicker" data-calendars=2  >
+        </p>
+        <p>
+        <h3>   只能选择当前日期之后的时间  data-render </h3>
+        <input data-type="datepicker" data-render="function(date){var now = new Date();return {'disabled': (date.valueOf() < now.valueOf())}}"  >
+        <br>
+        <pre>
+            data-render 参数是一个函数，改函接受一个参数，date。对应日历的每一个日期
+            该函数返回一个{} 对象，对象结构可以包含 disabled(boolean),selected(boolean),classname(boolean),可以控制每一个日期的选择状态，是否禁用，以及显示样式。
+            <b>如果需要只可以允许选择工作日，或研发日历（如研发日历有配置）</b>
+        </pre>
+        </p>
+        <h3>onchange事件</h3>
+        <p>
+          选择日期： <input id="date" data-type="datepicker" data-format="Y年m月d日"/>
+          下一周：<input  id="nextw" />
+            下一个月：<input  id="nextm" />
+          下一年：<input  id="nexty" />
+          100天后：<input  id="next100" />
+
+        </p>
+        <h3>onchange事件</h3>
+        <p>
+            日期组建onchange接收时间有四个参数
+            onchange(event,dateStr,dataObj,input)
+            event：事件对象
+            dateStr：选择的时间字符串(多选时，为字符串数组)
+            dateObj：选择的时间对象(多选时，为对象数组)
+            事件可以返回值，
+            return [res].concat(event.result)
+            当res===false的时候，将取消选择
+        </p>
+        <pre>
+            &lt;script&gt;
+            $("input").on("change",function(){
+                // console.log(arguments)
+            })
+            $("input#date").on("change",function(){
+                var selDate = arguments[2]
+                //这里要取好几个日期，所有，每次都是使用selDate创建新对象，如果只使用一次，可以直接用selDate
+                //下一周
+                var date = new Date(selDate)
+                date.setDate(date.getDate()+7)
+                $("#nextw").val(date.toLocaleDateString())
+
+                //下一月
+                date = new Date(selDate)
+                date.setMonth(date.getMonth()+1)
+                $("#nextm").val(date.toLocaleDateString())
+
+
+                //下一年
+                date = new Date(selDate)
+                date.setFullYear(date.getFullYear()+1)
+                $("#nexty").val(date.toLocaleDateString())
+                //100天后
+                date = new Date(selDate)
+                date.setDate(date.getDate()+100)
+                $("#next100").val(date.toLocaleDateString())
+
+            })
+             &lt;/script&gt;
+        </pre>
+<script>
+
+        $("input").on("change",function(){
+           // console.log(arguments)
+        })
+        $("input#date").on("change",function(){
+            var selDate = arguments[2]
+            //这里要取好几个日期，所有，每次都是使用selDate创建新对象，如果只使用一次，可以直接用selDate
+            //下一周
+            var date = new Date(selDate)
+            date.setDate(date.getDate()+7)
+            $("#nextw").val(date.toLocaleDateString())
+
+            //下一月
+             date = new Date(selDate)
+            date.setMonth(date.getMonth()+1)
+            $("#nextm").val(date.toLocaleDateString())
+
+
+            //下一年
+            date = new Date(selDate)
+            date.setFullYear(date.getFullYear()+1)
+            $("#nexty").val(date.toLocaleDateString())
+            //100天后
+            date = new Date(selDate)
+            date.setDate(date.getDate()+100)
+            $("#next100").val(date.toLocaleDateString())
+
+        })
+</script>
+</body>
+</html>

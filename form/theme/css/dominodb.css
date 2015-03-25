@@ -1,0 +1,183 @@
+html,body,.mainbody,middlebody {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0px;
+	overflow: hidden;
+	font-size: 12px;
+}
+
+.headerbackground {
+	background-color: #eaebeb;
+	height: 82px;
+	width: 100%;
+}
+
+.header .bander {
+	background-color: #eaebeb;
+	background-image: url( /HikDefaultSytle/ViewForm/images/banner3_2.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 60%;
+	height: 80px;
+	width: 100%;
+}
+
+.header .bander .appname {
+	padding-right: 30px;
+	padding-top: 40px;
+	font-size: 20px;
+	color: #c03030;
+	font-family: "ºÚÌå,Arial";
+	float: right;
+}
+
+.headerstatus {
+	height: 25px;
+	width: 100%;
+	line-height: 22px;
+	background-image:
+		url(/HikDefaultSytle/ViewForm/images/viewHead_bg2_2.gif);
+	background-repeat: repeat-x;
+	background-color: #DCDADB;
+}
+
+.headerstatus A {
+	text-decoration: none;
+	color: #000
+}
+
+A.black:LINK {
+	font-size: 9pt;
+	color: #000000;
+	text-decoration: none;
+}
+
+A.black:VISITED {
+	font-size: 9pt;
+	color: #000000;
+	text-decoration: none;
+}
+
+A.black:HOVER {
+	font-size: 9pt;
+	color: #ff3300;
+	text-decoration: underline;
+}
+
+.headerstatusleft {
+	float: left;
+	color: #FFF;
+	padding-left: 12px;
+	font-family: ËÎÌå;
+}
+
+.headerstatusright {
+	float: right;
+	padding-right: 30px;
+	font-weight: border;
+}
+
+.headershr {
+	height: 10px;
+	width: 100%;
+	background-image: url(/HikDefaultSytle/ViewForm/images/viewhead_bg3.gif)
+		;
+	background-repeat: repeat-x;
+}
+
+.navleft {
+	width: 180px;
+	height: 100%;
+}
+
+.dominoNavigation {
+	border-width: 1px;
+	border-color: #000;
+	background-color: #ededed;
+}
+
+.dominoNavigation ul {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.dominoNavigation li {
+	line-height: 22px;
+	list-style-type: none;
+	cursor: pointer;
+	border-left: #CFCFCF solid 1px;
+	border-right: #CFCFCF solid 1px;
+}
+
+.dominoNavigation li .item {
+	border-bottom: #CFCFCF solid 1px;
+}
+
+.dominoNavigation li .text {
+	margin-left: 22px;
+	font-size: 12px;
+}
+
+.dominoNavigation .menulevel-0>.text {
+	margin-left: 5px;
+	padding-left: 15px;
+	background-image:
+		url(/HikDefaultSytle/ViewForm/images/viewNavi_title.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 50%;
+}
+
+.dominoNavigation li .selected {
+	color: #AA3333;
+	cursor: default;
+	background-color: #F9F9F9;
+}
+
+.dominoNavigation .menulevel-0 {
+	
+}
+
+.dominoNavigation .menulevel-1 li {
+	background-color: #FdFdFd;
+}
+
+.dominoNavigation .menulevel-2 li {
+	background-color: #FFF;
+}
+
+.dominoNavigation .menulevel-3 li {
+	background-color: #FFF;
+}
+
+.dominoNavigation .menulevel-0 {
+	background-image: url(/HikDefaultSytle/ViewForm/images/viewNavi_bg1.gif)
+		;
+	background-repeat: repeat-x;
+}
+
+.dominoNavigation .itemopen>ul {
+	display: "";
+	height: 100%;
+}
+
+.dominoNavigation .itemfold>ul {
+	display: none;
+}
+
+.dominoNavigation ul .item {
+	height: 22px;
+}
+
+.dominoNavigation ul .item :first-child {
+	
+}
+
+.centerbody {
+	margin: 0px auto;
+	height: 100%;
+}
+
+footer {
+	clear: both;
+}

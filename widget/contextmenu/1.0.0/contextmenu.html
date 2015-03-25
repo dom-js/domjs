@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script  type="text/javascript" src="/domjs/r.js"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl:"/domjs"
+        })
+            require(["jquery","widget/contextmenu/1.0.0/contextmenu"],function($,contextmenu){
+
+                var items = [{
+                    text:"添加",
+                    onclick:function(){
+                        console.log("add")
+                    }
+                },{
+                    text:"删除",
+                    onclick:function(){
+                         console.log(this.panel.target);
+                    }
+                }]
+
+            var menu = new contextmenu({
+                items:items
+            })
+
+            $(function(){
+                $("div").on("contextmenu",function(event){
+                    menu.target = this
+                   menu.show(event);
+                    return  false;
+                })
+            })
+        })
+    </script>
+    <title></title>
+
+</head>
+<body>
+<div style="width: 100%;height: 100%;  background-color: #e3e3c7;">
+    <p>1</p> <p>2</p> <p>3</p> <p>4</p> <p>5</p> <p>6</p> <p>7</p> <p>8</p>
+</div>
+
+</body>
+</html>

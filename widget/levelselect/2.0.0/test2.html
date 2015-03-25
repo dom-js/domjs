@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript">
+        require={baseUrl:"/domjs"}
+    </script>
+
+    <script type="text/javascript" src="/domjs/rjq202.js"></script>
+    <script type="text/javascript">
+        require(["m!widget/levelselect:1.2.0","store/viewstore"], function (levelselect,Store)
+        {
+            var store = new Store({
+                host:"rduat.xxx.com.cn",
+                db:"/xxx/rdweb/RDOrg.nsf",
+                view:"(dlOrgDeptByParentDeptCode)",
+                idProperty:"deptpath",
+                count:"100"
+            })
+            var store2 = new Store({
+                host:"rduat.xxx.com.cn",
+                db:"/xxx/rdweb/RDProduct.nsf",
+            view:"vwProductSelectForDL",
+                    idProperty:"_unid",
+                count:"100"
+        })
+
+        var sel2 = levelselect("[name=deptpath]",{
+        store:store,
+                root:"root",
+            //valueitems:valuelist,
+                rootlabel:"",
+                height:300,
+                width:600,
+                label:"deptcodedescriptioncn",
+                multi:false,
+                filter:function(item){
+                    //alert(this.focusLevel);
+                                var ssbm=item["dl"];
+                                //alert(ssbm);
+
+                                var cuser=document.getElementById("CurrentUser").value;
+                                if(ssbm==cuser){return true;}else{return false;}
+
+                },
+
+        showcols:2,
+                leveldepth:2,
+                selectcate:false,
+                valuefield:"_item_path",
+                valuesplit:",",
+                pathsplit:"\\"
+        })
+
+        var sel3 = levelselect("[name=cpx]",{
+            store:store2,
+            root:"root",
+            //valueitems:valuelist,
+            rootlabel:"",
+            height:300,
+            width:600,
+            cacheresult:false,
+            label:"deptcodedescriptioncn",
+            multi:true,
+            filter:function(item){
+
+            var dlmember=item["dl"].toString().replace(/cn=([^\/]*)\/.*/gi,"$1");
+            var ssbm=item["department"];
+            var cuser=$("[name=CurrentUser]").val();
+            var cdept=$("[name=deptpath]").val();
+            //console.log(dlmember);
+          // console.log(cuser,"=",dlmember,":",dlmember==cuser)
+           //  console.log(ssbm,"=",cdept,":",ssbm==cdept);
+            return (ssbm==cdept && dlmember==cuser)
+            if(ssbm==cdept && dlmember==cuser){return true;}else{return false;}
+
+        },
+
+        showcols:2,
+                leveldepth:1,
+                selectcate:false,
+                valuefield:"type",
+                valuesplit:",",
+                pathsplit:"\\"
+        })
+
+
+
+
+        sel2.filter=function(item){
+
+            var ssbm=item["dl"];
+            var cuser=$("[name=CurrentUser]").val();
+            if(ssbm==cuser&&this.focusLevel!=1){return true;}else{return false;}
+
+        }
+        sel2.on("click",function(){
+            sel2.showDialog()
+        })
+
+
+        sel3.on("click",function(){
+           // sel3.options.root=$("[name=deptpath]").val();
+
+            sel3.options.rootlabel = $("[name=deptpath]").val()
+            sel3.showDialog()
+        })
+
+
+        }
+        )
+    </script>
+    <title></title>
+<style>
+    body{
+        font-size: 12px;
+    }
+</style>
+</head>
+<body>
+  <input name="CurrentUser" type="text" value="李晓">
+  <br>
+部门路径<input name="deptpath" value="股份公司\前端产品业务部"/>
+<br>
+产品线：<input name= "cpx"/>
+</body>
+</html>

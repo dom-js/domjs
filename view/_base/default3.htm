@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script>
+        var require = {
+            //baseUrl:"//localhost:3000/domjs"
+            paths:{
+                "store/util/openviewadapter":"store/util/openviewadapter2.uncompress",
+                "store/viewstore":"store/viewstore/1.0.0/viewstore2.uncompress",
+                "view/_base/view":"view/_base/view.uncompress"
+            }
+        }
+    </script>
+    <script type="text/javascript" data-main='/domjs/main' src="/domjs/rjq202.js"></script>
+    <script type="text/javascript">
+    </script>
+    <title></title>
+    <style>
+            .table table{
+              width: 100%  ;
+             background-color: #cccccc;
+                font-size: 12px;
+          }
+            .table td {
+                background-color: #FFF;
+                line-height: 20px;
+                height: 20px;
+            }
+             .table th{
+                background-color:#AA3333;
+                line-height: 22px;
+                height: 22px;
+                font-size: 11px;
+                font-weight: bold;
+                color: #FFF;
+            }
+    </style>
+    <script>
+          $(function(){
+              require(["view/view"],function(View){
+                 var view = View("#abc")
+                  $("[name=sort]").on("click",function(){
+                      view.sort({
+                          "ResortAscending":"2"
+                      })
+                  })
+              })
+
+          })
+    </script>
+</head>
+
+<body>
+data-view=EndByStartAuthor_bomfb""cc
+  <input type="button" name="sort" value="sort">
+ <div id="abc" class="table"
+      data-host="develop.xxx.com.cn"
+      data-db="/xxx/bxg/BomApply_New.nsf"
+        data-count="5"
+      data-view="EndByStartAuthor_bomfb"
+      data-queryengine="open"
+     data-scrollBar="window"
+        ></div>
+</body>
+</html>

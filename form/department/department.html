@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="/domjs/require-jquery.js"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl:"/domjs",
+            paths:{}
+        })
+
+        require(["form/department"], function (depatment)
+                {
+                    $("[data-type=department]").each(function(i,el){
+                        depatment(el)
+                    })
+                    $("[name=scmdept]").data("this").options.onselect=function(items){
+
+                            if(items.length>0){
+                                var item = items[items.length-1]
+                                this.val(item["dept_name"])
+                                    var val = "经理:"+item["dept_manager"]
+                                    $("[name=dept4manager]").val(val)
+                            }
+                            return true
+                    }
+                }
+        )
+    </script>
+    <title></title>
+    <style>
+        body{
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<h2>总部部门选择</h2>
+<p>多部门选择</p>
+<div style="margin: 10px">
+    <p>请先登录生产环境再进行测试</p>
+    部门名称：<input data-type="department" data-version="rdv1" style="width: 600px"  type="text" name='department' data-multi=false data-hasbt="false">
+
+    <br>
+    <h2>研发中心选择</h2>
+
+    部门路径：<input  data-type="department"  name="rddepart" style="width: 600px"
+                 type="text"
+                 data-root="000004"
+                 data-rootlabel="研发中心"
+                 data-leveldepth=2
+                 data-multi=false
+        />
+
+    <br>
+    <h2>供应链选择</h2>
+    <p>且只能选择一个层级</p>
+    部门名称：<input  data-type="department" name="scmdept" style="width: 300px" type="text"
+                 type="text"
+                 data-root="000238"
+                 data-rootlabel="供应链"
+                 data-showpath=false
+                 data-leveldepth=1
+                 data-multi=false
+        /><br>
+    部门主管：<input  name="dept4manager" style="width:200px" type="text"/>
+
+    <h2>研发中心/供应链选择</h2>
+    <p>多根节点组合选择</p>
+    部门名称：<input  data-type="department" name="dept5name"
+                 data-roots='[{dept_code:"000004",dept_name:"研发中心"},{dept_code:"000238",dept_name:"供应链"}] '
+                 data-leveldepth=0
+                 data-multi=false
+                 data-autofields="{dept_manager:'dept5manager'}"
+                 style="width: 300px" type="text"/>
+    <br>
+    部门主管：<input  name="dept5manager" style="width:200px" type="text"/>
+
+</div>
+
+
+</body>
+</html>

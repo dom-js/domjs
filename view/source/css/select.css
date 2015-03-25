@@ -1,0 +1,42 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+}
+.jbox-content .viewgrid table{
+    width: 100%  ;
+    background-color: #cccccc;
+    font-size: 12px;
+}
+
+
+.jbox-content .viewgrid td {
+    background-color: #FFF;
+    line-height: 20px;
+    height: 20px;
+}
+.jbox-content .viewgrid  tr:focus td {
+    background-color: #ffffcc;
+}
+.jbox-content .viewgrid  tr:nth-child(odd) td {
+    background-color: #fcfcfc;
+}
+.jbox-content .viewgrid  tr:hover td {
+    background-color: #ffffcc;
+}
+.jbox-content .viewgrid   td  a{
+    color: #aaaaaa;
+    text-decoration: none;
+}
+.jbox-content .viewgrid th{
+    background-color: #aaaaaa;
+    line-height: 22px;
+    height: 22px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFF;
+}
+.infotitle th, td.infotitle{
+    background-color: #fcf7ca;
+    color: #044062;
+}

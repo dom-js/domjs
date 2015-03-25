@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="/domjs/r.js"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl:"/domjs",
+            paths:{}
+        })
+        require(["layout/containerPanel"],function(Layout){
+            var  data = [
+                {name:"张韶涵",region:"left",type:"container",border:"1px solid #00FF00",html:"<div>left侧</div>"},
+                {name:"林俊杰",region:"top",type:"container",border:"1px solid #00FF00",html:"<div>顶部</div>"},
+                {name:"张韶涵",region:"center",type:"container",width:"500",border:"1px solid #00FF00",html:"<div>中间</div>"},
+                {name:"张韶涵",region:"right",type:"container",border:"1px solid #00FF00",html:"<div>右侧</div>"}
+            ];
+            var layout1 =  Layout("#layout",{items:data});
+        })
+    </script>
+    <title></title>
+
+</head>
+<body>
+<div id="layout" style="width: 1000px ;height: 300px;"></div>
+</body>
+</html>
